@@ -13,7 +13,7 @@ IS
 BEGIN
     SELECT MAX(id) 
     INTO aux
-    FROM estudiant;   -- Obtenemos el maximo id de la tabla estudiante
+    FROM estudiant;   -- Obtenemos el maximo id de la tabla estudiante para dar un id nuevo cada vez
     
     aux:=aux+1;     -- El nuevo estudiante será uno más que el máximo
  
@@ -21,7 +21,7 @@ BEGIN
     INTO aux2
     FROM casa WHERE id=p_idcasa;  -- Miramos si hay alguna casa con el id introducido
  
-    IF aux2 = 1 THEN
+    IF aux2 = 0 THEN
         IF p_nom IS NOT NULL THEN     -- Verificamos que el nom es obligatori
             IF p_anyo >= 1 AND p_anyo<=7 AND p_anyo IS NOT NULL THEN  -- Verificamos que el anyo es obligatori y que esté entre 1 y 7
                 INSERT INTO estudiant VALUES (aux, p_nom, p_anyo, p_idcasa);
